@@ -86,7 +86,7 @@ function App() {
             </div>
           </div>
 
-        ) : <div className="error-message">{weather.message}!</div>}
+        ) : <div className="error-message">{weather.message}</div>}
 
       </main>
     </div>
