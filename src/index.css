@@ -1,139 +1,157 @@
-*{
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* @layer base {
+  p {
+    @apply font-sans
+  }
+} */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body{
-  font-family:'montseratt',sans-serif;
+body {
+  font-family: "montseratt", sans-serif;
 }
 
-.App{
-  background: rgb(7,65,208);
-  background: linear-gradient(90deg, rgba(7,65,208,1) 6%, rgba(42,73,181,1) 10%, rgba(7,35,208,1) 61%, rgba(64,88,166,1) 79%);
+.App {
+  background: rgb(7, 65, 208);
+  background: linear-gradient(
+    90deg,
+    rgba(7, 65, 208, 1) 6%,
+    rgba(42, 73, 181, 1) 10%,
+    rgba(7, 35, 208, 1) 61%,
+    rgba(64, 88, 166, 1) 79%
+  );
   background-size: cover;
   background-position: bottom;
   transition: 0.4 ease-out;
   background-repeat: no-repeat;
   display: block;
-  
-  
 }
-.app-clouds{
+.app-clouds {
   background-image: url(./assets/Clouds-Background-HD.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   transition: 0.4s ease;
 }
-.app-rain{
+.app-rain {
   background-image: url(./assets/rain-bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   transition: 0.4s ease;
 }
-.app-hot{
+.app-hot {
   background-image: url(./assets/hot-bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   transition: 0.4s ease;
 }
-.app-ice{
+.app-ice {
   background-image: url(./assets/ice-bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   transition: 0.4s ease;
 }
-.app-haze{
-  background: rgb(7,65,208);
-  background: linear-gradient(90deg, rgba(7,65,208,1) 6%, rgba(42,73,181,1) 10%, rgba(7,35,208,1) 61%, rgba(64,88,166,1) 79%);
+.app-haze {
+  background: rgb(7, 65, 208);
+  background: linear-gradient(
+    90deg,
+    rgba(7, 65, 208, 1) 6%,
+    rgba(42, 73, 181, 1) 10%,
+    rgba(7, 35, 208, 1) 61%,
+    rgba(64, 88, 166, 1) 79%
+  );
   background-repeat: no-repeat;
   background-size: cover;
   transition: 0.4s ease;
 }
-main{
+main {
   min-height: 100vh;
   padding: 25px;
 }
-.search-box{
+.search-box {
   display: flex;
   justify-content: center;
   width: 100%;
   margin: 0 0 75px;
 }
-.search-box .search-bar{  
+.search-box .search-bar {
   width: 50%;
   padding: 15px;
   appearance: none;
   background: none;
   border: none;
   outline: none;
-  background-color: rgba(255,255,255,0.8);
-  border-radius: 16px 16px 16px 16px ;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 16px 16px 16px 16px;
   margin-top: 25px;
 
-  box-shadow: 0px 5px rgba(0,0,0,0.4);
+  box-shadow: 0px 5px rgba(0, 0, 0, 0.4);
   font-size: 20px;
   transition: 0.4s ease;
 }
 .search-box .search-bar:focus {
- background-color:rgba(255,255,255,0.75);
+  background-color: rgba(255, 255, 255, 0.75);
 }
 
-.location-box .location{
-  color: #FFF;
+.location-box .location {
+  color: #fff;
   font-size: 32px;
   font-weight: 500;
   text-align: center;
-  text-shadow: 3px 3px rgba(50,50,70,0.5);
+  text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
 }
 
-.location-box .date{
-  color: #FFF;
+.location-box .date {
+  color: #fff;
   font-size: 20px;
   font-weight: 300;
   font-style: italic;
   text-align: center;
-  text-shadow: 2px 2px rgba(50,50,70,0.5);
+  text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
 }
 
-.weather-box{
-  text-align: center;      
+.weather-box {
+  text-align: center;
 }
-.weather-box .temp{
-position: relative;
-display: inline-block;
-margin: 30px auto;
-background-color: rgba(255,255,255,0.2);
-border-radius: 16px;
-padding: 15px 25px;
-color: #FFF;
-font-size: 100px;
-font-weight: 900;
-text-shadow: 3px  6px rgba(50,50,70,0.5);
-text-align: center;
-box-shadow: 3px  6px rgba(0,0,0,0.2); 
-transition: 0.4s ease;
+.weather-box .temp {
+  position: relative;
+  display: inline-block;
+  margin: 30px auto;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 15px 25px;
+  color: #fff;
+  font-size: 100px;
+  font-weight: 900;
+  text-shadow: 3px 6px rgba(50, 50, 70, 0.5);
+  text-align: center;
+  box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
+  transition: 0.4s ease;
 }
-.weather-box .weather{
-  color: #FFF;
+.weather-box .weather {
+  color: #fff;
   font-size: 50px;
   font-weight: 700;
-  text-shadow: 3px 3px rgba(50,50,70,0.5);
+  text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
 }
-#temp_max{
-display: inline;
-color: #FFF;
-font-size: 50px;
-padding: 30px;
+#temp_max {
+  display: inline;
+  color: #fff;
+  font-size: 50px;
+  padding: 30px;
 }
-#temp_min{
-display: inline;
-color: #FFF;
-font-size: 50px;
-padding: 30px;
+#temp_min {
+  display: inline;
+  color: #fff;
+  font-size: 50px;
+  padding: 30px;
 }
 
-.error-message{
+.error-message {
   text-align: center;
   font-size: 40px;
   color: rgb(85, 36, 36);
