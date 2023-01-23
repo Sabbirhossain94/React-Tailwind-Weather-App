@@ -27,7 +27,7 @@ export default function Forecast({forecastByCity,forecastData}) {
                   return (
                     <SwiperSlide>
                       <li key={key} className="list-none">
-                        <div className="h-56 w-40 mt-8 flex flex-col items-center pt-2 rounded-xl bg-slate-900/10 ">
+                        <div className="h-56 w-44 mt-8 flex flex-col items-center pt-2 rounded-xl bg-slate-900/10 ">
                           <div className="w-40  mt-2 flex flex-col items-center ">
                             <p className="text-cyan-500  ">
                               {moment(item.dt_txt).format("D")}
@@ -65,7 +65,7 @@ export default function Forecast({forecastByCity,forecastData}) {
                                 <FaLongArrowAltUp className="text-cyan-400 text-md mt-0.5 " />
                               </span>
                               <p className="text-slate-400 text-md">
-                                {Math.round(item.main.temp_max)}
+                                {Math.round(item.main.temp_max)}°
                               </p>
                             </div>
                             <div className="flex">
@@ -73,7 +73,7 @@ export default function Forecast({forecastByCity,forecastData}) {
                                 <FaLongArrowAltDown className="text-cyan-400 text-md mt-0.5" />
                               </span>
                               <p className="text-slate-400 text-md">
-                                {Math.round(item.main.temp_min)}
+                                {Math.round(item.main.temp_min)}°
                               </p>
                             </div>
                           </div>
@@ -88,7 +88,7 @@ export default function Forecast({forecastByCity,forecastData}) {
                     <SwiperSlide>
                       <li key={key} className="list-none">
                         {" "}
-                        <div className="h-56 w-40 mt-8 flex flex-col items-center pt-2 rounded-xl bg-slate-900/10 ">
+                        <div className="h-56 w-44 mt-8 flex flex-col items-center pt-2 rounded-xl bg-slate-900/10 ">
                           <div className="w-40  mt-2 flex flex-col items-center ">
                             <p className="text-cyan-500  ">
                               {moment(item.dt_txt).format("D")}
@@ -126,7 +126,7 @@ export default function Forecast({forecastByCity,forecastData}) {
                                 <FaLongArrowAltUp className="text-cyan-400 text-md mt-1 " />
                               </span>
                               <p className="text-slate-400">
-                                {Math.round(item.main.temp_max)}
+                                {Math.round(item.main.temp_max)}°
                               </p>
                             </div>
                             <div className="flex">
@@ -134,7 +134,7 @@ export default function Forecast({forecastByCity,forecastData}) {
                                 <FaLongArrowAltDown className="text-cyan-400 text-md mt-1" />
                               </span>
                               <p className="text-slate-400">
-                                {Math.round(item.main.temp_min)}
+                                {Math.round(item.main.temp_min)}°
                               </p>
                             </div>
                           </div>
