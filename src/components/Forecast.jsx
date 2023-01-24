@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from "react";
 import { Navigation, Pagination, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -10,26 +10,48 @@ import moment from "moment/moment";
 import { FaLongArrowAltUp } from "react-icons/fa";
 import { FaLongArrowAltDown } from "react-icons/fa";
 
-export default function Forecast({forecastByCity,forecastData}) {
+export default function Forecast({ forecastByCity, forecastData }) {
+  const navigationPrevRef = useRef();
+  const navigationNextRef = useRef();
   return (
-    <div className="h-full mt-8 w-full">
+    <div className=" ">
       <Swiper
-        modules={[Pagination, A11y]}
-        spaceBetween={-150}
-        slidesPerView={3}
-        pagination={{ clickable: true }}
-        style={{ padding: "60px" }}
+        breakpoints={{
+          640: {
+            slidesPerView: 3,
+            spaceBetween: 40,
+          },
+          768: {
+            slidesPerView: 4,
+            spaceBetween: 100,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+          1536: {
+            slidesPerView: 5,
+            spaceBetween: 30,
+          },
+        }}
+        modules={[Pagination, Navigation, A11y]}
+        spaceBetween={50}
+        slidesPerView={5}
+        pagination={{
+          clickable: true,
+          el: ".swiper-custom-pagination",
+        }}
       >
-        <div className="h-56 w-full grid grid-cols-5 grid-rows-1 sm:grid-cols-3 sm:grid-rows-2 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-5 gap-x-8">
+        <div className="h-56 w-full grid grid-cols-4 grid-rows-1 sm:grid-cols-3 sm:grid-rows-2 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-5 gap-x-8">
           <ul>
             {forecastByCity
               ? forecastByCity.list.map((item, key) => {
                   return (
-                    <SwiperSlide>
-                      <li key={key} className="list-none">
-                        <div className="h-56 w-44 mt-8 flex flex-col items-center pt-2 rounded-xl bg-slate-900/10 ">
-                          <div className="w-40  mt-2 flex flex-col items-center ">
-                            <p className="text-cyan-500  ">
+                    <SwiperSlide key={key}>
+                      <li className="list-none">
+                        <div className="h-56 flex flex-col mt-8 items-center pt-2 rounded-xl bg-slate-900/10 ">
+                          <div className="w-40 mt-6 flex flex-col items-center ">
+                            <p className="text-cyan-500 text-md ">
                               {moment(item.dt_txt).format("D")}
                               <span className="text-slate-400">
                                 {" "}
@@ -46,13 +68,13 @@ export default function Forecast({forecastByCity,forecastData}) {
                             </p>
 
                             <img
-                              width="100px"
-                              height="100px"
+                              width="80px"
+                              height="80px"
                               className="mb-[-4px]"
                               src={`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
                               alt="error"
                             />
-                            <p className=" text-lg text-white ">
+                            <p className=" text-sm text-white ">
                               {item.weather[0].description
                                 .charAt(0)
                                 .toUpperCase() +
@@ -62,17 +84,17 @@ export default function Forecast({forecastByCity,forecastData}) {
                           <div className="p-4 h-12 w-40 flex flex-row justify-center">
                             <div className="flex mr-10">
                               <span>
-                                <FaLongArrowAltUp className="text-cyan-400 text-md mt-0.5 " />
+                                <FaLongArrowAltUp className="text-cyan-400 text-sm mt-0.5 " />
                               </span>
-                              <p className="text-slate-400 text-md">
+                              <p className="text-slate-400 text-sm">
                                 {Math.round(item.main.temp_max)}°
                               </p>
                             </div>
                             <div className="flex">
                               <span>
-                                <FaLongArrowAltDown className="text-cyan-400 text-md mt-0.5" />
+                                <FaLongArrowAltDown className="text-cyan-400 text-sm mt-0.5" />
                               </span>
-                              <p className="text-slate-400 text-md">
+                              <p className="text-slate-400 text-sm">
                                 {Math.round(item.main.temp_min)}°
                               </p>
                             </div>
@@ -85,12 +107,12 @@ export default function Forecast({forecastByCity,forecastData}) {
               : forecastData
               ? forecastData.list.map((item, key) => {
                   return (
-                    <SwiperSlide>
-                      <li key={key} className="list-none">
+                    <SwiperSlide key={key}>
+                      <li className="list-none">
                         {" "}
                         <div className="h-56 w-44 mt-8 flex flex-col items-center pt-2 rounded-xl bg-slate-900/10 ">
-                          <div className="w-40  mt-2 flex flex-col items-center ">
-                            <p className="text-cyan-500  ">
+                          <div className="w-40 mt-6 flex flex-col items-center ">
+                            <p className="text-cyan-500 text-md">
                               {moment(item.dt_txt).format("D")}
                               <span className="text-slate-400">
                                 {" "}
@@ -107,13 +129,13 @@ export default function Forecast({forecastByCity,forecastData}) {
                             </p>
 
                             <img
-                              width="100px"
-                              height="100px"
+                              width="80px"
+                              height="80px"
                               className="mb-[-4px]"
                               src={`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
                               alt="error"
                             />
-                            <p className=" text-lg text-white ">
+                            <p className=" text-sm text-white ">
                               {item.weather[0].description
                                 .charAt(0)
                                 .toUpperCase() +
@@ -123,17 +145,17 @@ export default function Forecast({forecastByCity,forecastData}) {
                           <div className="p-4 h-12 w-40 flex flex-row justify-center">
                             <div className="flex mr-10">
                               <span>
-                                <FaLongArrowAltUp className="text-cyan-400 text-md mt-1 " />
+                                <FaLongArrowAltUp className="text-cyan-400 text-sm mt-1 " />
                               </span>
-                              <p className="text-slate-400">
+                              <p className="text-slate-400 text-sm">
                                 {Math.round(item.main.temp_max)}°
                               </p>
                             </div>
                             <div className="flex">
                               <span>
-                                <FaLongArrowAltDown className="text-cyan-400 text-md mt-1" />
+                                <FaLongArrowAltDown className="text-cyan-400 text-sm mt-1" />
                               </span>
-                              <p className="text-slate-400">
+                              <p className="text-slate-400 text-sm">
                                 {Math.round(item.main.temp_min)}°
                               </p>
                             </div>
