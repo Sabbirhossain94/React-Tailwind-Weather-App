@@ -11,6 +11,7 @@ import { TbTemperatureCelsius } from "react-icons/tb";
 import "./index.css";
 import moment from "moment/moment";
 import Forecast from "./components/Forecast";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 export default function App() {
   const [weatherApiData, setWeatherApiData] = useState();
@@ -70,24 +71,24 @@ export default function App() {
       })
       .catch((err) => setForecastByCity(err.message));
   }
- console.log(weatherByCity)
- console.log(forecastByCity)
+  console.log(weatherByCity);
+  console.log(forecastByCity);
   return (
     <div>
-      <div className="font-inter font-medium bg-gradient-to-t from-slate-600 to-slate-900 h-screen">
+      <div className="font-inter font-medium bg-gradient-to-r from-slate-600 to-slate-900 h-full">
         <div className="flex justify-center items-center ">
           <div className=" sm:h-full sm:w-10/12 md:w-3/4 lg:w-3/4 xl:w-2/3 2xl:w-1/2 flex text-center justify-center items-center ">
             {weatherApiData ? (
               <div className="w-full ">
-                <div className="mt-16 ">
-                  <label className="relative block mx-0 ml-2">
+                <div className="mt-24">
+                  <label className="relative block mx-0 ">
                     <span className="sr-only">Search</span>
-                    <span className="absolute inset-y-0 left-0 flex items-center pl-2">
-                      <AiOutlineSearch className="text-slate-400 ml-1" />
+                    <span className="absolute inset-y-0 left-0 flex items-center ml-4 ">
+                      <AiOutlineSearch className="text-slate-400 " />
                     </span>
                     <form onSubmit={handleSubmit}>
                       <input
-                        className="caret-slate-400 placeholder:not-italic placeholder:text-slate-400 placeholder:text-md block text-slate-400 bg-slate-900/20 sm:w-full h-12 border border-slate-700 rounded-md py-2 pl-9 pr-3 shadow-md focus:outline-none focus:border-cyan-500 sm:text-sm"
+                        className="caret-slate-400 placeholder:not-italic placeholder:text-slate-400 placeholder:text-md block text-slate-400 bg-slate-900/20 sm:w-full h-12 border border-slate-900/10 rounded-md py-2 pl-9  shadow-md focus:outline-none focus:border-cyan-500 sm:text-sm"
                         placeholder="Search by cities..."
                         type="text"
                         name="search"
@@ -99,10 +100,11 @@ export default function App() {
                   </label>
                 </div>
                 {/* main */}
-                <div className="bg-slate-900/10 rounded-xl flex justify-center mt-16">
-                  <div className="w-2/3  grid grid-cols-4 grid-rows-3 gap-x-0">
-                    <div className="col-span-2 h-36 w-36">
-                      <p className="text-cyan-400 text-md mt-6">{date}</p>
+
+                <div className="bg-slate-900/10 rounded-xl flex justify-center mt-4">
+                  <div className=" w-2/3 grid grid-cols-4 grid-rows-3 gap-x-16">
+                    <div className=" col-span-2 h-36 lg:w-72 sm:w-36 mt-2">
+                      <p className="text-cyan-400 text-md mt-10">{date}</p>
                       <div className="flex justify-center ">
                         <img
                           style={{ color: "white", marginLeft: "10px" }}
@@ -115,7 +117,7 @@ export default function App() {
                         />
                       </div>
                     </div>
-                    <div className=" flex flex-col justify-center items-center h-36 w-36 ">
+                    <div className=" flex flex-col mt-2 justify-end items-center h-32 w-36 ">
                       <div className="flex flex-row justify-center">
                         <p className="text-slate-400 ">Max</p>
                         <FaLongArrowAltUp className="text-cyan-400 text-lg ml-0.5 mt-1" />
@@ -130,7 +132,7 @@ export default function App() {
                         </span>
                       </p>
                     </div>
-                    <div className=" flex flex-col justify-center items-center h-36 w-36  ">
+                    <div className=" mt-2 flex flex-col justify-end items-center h-32 w-36  ">
                       <div className="flex flex-row justify-center">
                         <p className="text-slate-400">Min</p>
                         <FaLongArrowAltDown className="text-cyan-400 text-lg ml-0.5 mt-1" />
@@ -144,10 +146,10 @@ export default function App() {
                         </span>
                       </p>
                     </div>
-                    <div className="col-span-2 h-36 w-36 ">
+                    <div className=" col-span-2 h-36 lg:w-72 sm:w-36 ">
                       <div className="flex flex-col justify-center items-center">
-                        <div className="flex">
-                          <p className=" text-white text-5xl">
+                        <div className="flex mt-4">
+                          <p className=" text-white text-5xl ">
                             {weatherByCity
                               ? Math.round(weatherByCity.main.temp)
                               : Math.round(weatherApiData.main.temp)}
@@ -159,9 +161,7 @@ export default function App() {
                         <div className="flex flex-col mt-6">
                           <div className="flex flex-row justify-center">
                             {" "}
-                            <p className=" text-slate-400">
-                              Feels like{" "}
-                            </p>{" "}
+                            <p className=" text-slate-400">Feels like </p>{" "}
                             <span className="text-white ml-1">
                               {weatherByCity
                                 ? Math.round(weatherByCity.main.feels_like)
@@ -195,7 +195,7 @@ export default function App() {
                         </div>
                       </div>
                     </div>
-                    <div className=" flex flex-col  justify-center items-center h-36 w-36 ">
+                    <div className=" flex flex-col  justify-center items-center h-32 w-36 ">
                       <div className="flex flex-row justify-center">
                         <p className="text-slate-400">Humidity</p>
                         <WiHumidity className="text-cyan-400 text-xl ml-0.5" />
@@ -207,7 +207,7 @@ export default function App() {
                         %
                       </p>
                     </div>
-                    <div className=" flex flex-col justify-center items-center h-36 w-36">
+                    <div className=" flex flex-col justify-center items-center h-32 w-36">
                       <div className="flex flex-row justify-center">
                         <p className="text-slate-400">Pressure</p>
                         <TbGauge className="text-cyan-400 text-xl ml-2 mt-0.5" />
@@ -219,8 +219,8 @@ export default function App() {
                         mb
                       </p>
                     </div>
-                    <div className="col-span-2 row-span-2  h-36 w-36"></div>
-                    <div className=" flex flex-col  justify-center items-center h-36 w-36 ">
+                    <div className=" col-span-2 row-span-2  h-32 w-72"></div>
+                    <div className=" flex flex-col  justify-start items-center h-32 w-36 ">
                       <div className="flex flex-row justify-center">
                         <p className="text-slate-400">Visibility </p>
                         <MdVisibility className="text-cyan-400 text-xl ml-2 mt-1" />
@@ -234,7 +234,7 @@ export default function App() {
                         Miles
                       </p>
                     </div>
-                    <div className=" flex flex-col justify-center items-center h-36 w-36 ">
+                    <div className="  flex flex-col justify-start items-center h-32 w-36 ">
                       <div className="flex flex-row justify-center">
                         <p className="text-slate-400">Wind </p>
                         <BiWind className="text-cyan-400 text-xl ml-2 mt-0.5" />
@@ -248,6 +248,7 @@ export default function App() {
                     </div>
                   </div>
                 </div>
+
                 {/* main */}
                 {/* {Forecast} */}
                 <Forecast
@@ -255,6 +256,12 @@ export default function App() {
                   forecastData={forecastData}
                 />
                 {/* forecast */}
+                <footer className="mt-8 h-24 border-t border-cyan-400/20 w-full flex justify-center items-center">
+                  <span className="text-cyan-500">© </span>{" "}
+                  <span className="text-white text-sm">
+                    &nbsp;2023 Weather-App. All Rights Reserved.
+                  </span>
+                </footer>
               </div>
             ) : (
               ""

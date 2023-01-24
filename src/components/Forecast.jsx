@@ -9,12 +9,10 @@ import "swiper/css/bundle";
 import moment from "moment/moment";
 import { FaLongArrowAltUp } from "react-icons/fa";
 import { FaLongArrowAltDown } from "react-icons/fa";
-
+import { BsHandIndex } from "react-icons/bs";
 export default function Forecast({ forecastByCity, forecastData }) {
-  const navigationPrevRef = useRef();
-  const navigationNextRef = useRef();
   return (
-    <div className=" ">
+    <div>
       <Swiper
         breakpoints={{
           640: {
@@ -26,7 +24,7 @@ export default function Forecast({ forecastByCity, forecastData }) {
             spaceBetween: 100,
           },
           1024: {
-            slidesPerView: 3,
+            slidesPerView: 4,
             spaceBetween: 20,
           },
           1536: {
@@ -34,7 +32,7 @@ export default function Forecast({ forecastByCity, forecastData }) {
             spaceBetween: 30,
           },
         }}
-        modules={[Pagination, Navigation, A11y]}
+        modules={[Pagination, A11y]}
         spaceBetween={50}
         slidesPerView={5}
         pagination={{
@@ -49,7 +47,7 @@ export default function Forecast({ forecastByCity, forecastData }) {
                   return (
                     <SwiperSlide key={key}>
                       <li className="list-none">
-                        <div className="h-56 flex flex-col mt-8 items-center pt-2 rounded-xl bg-slate-900/10 ">
+                        <div className="h-56 w-44 flex flex-col mt-8 items-center pt-2 rounded-xl bg-slate-900/10 ">
                           <div className="w-40 mt-6 flex flex-col items-center ">
                             <p className="text-cyan-500 text-md ">
                               {moment(item.dt_txt).format("D")}
@@ -147,7 +145,7 @@ export default function Forecast({ forecastByCity, forecastData }) {
                               <span>
                                 <FaLongArrowAltUp className="text-cyan-400 text-sm mt-1 " />
                               </span>
-                              <p className="text-slate-400 text-sm">
+                              <p className="text-slate-400 text-sm mt-0.5">
                                 {Math.round(item.main.temp_max)}°
                               </p>
                             </div>
@@ -155,7 +153,7 @@ export default function Forecast({ forecastByCity, forecastData }) {
                               <span>
                                 <FaLongArrowAltDown className="text-cyan-400 text-sm mt-1" />
                               </span>
-                              <p className="text-slate-400 text-sm">
+                              <p className="text-slate-400 text-sm mt-0.5">
                                 {Math.round(item.main.temp_min)}°
                               </p>
                             </div>
@@ -169,6 +167,10 @@ export default function Forecast({ forecastByCity, forecastData }) {
           </ul>
         </div>
       </Swiper>
+      <div className="mt-6 flex justify-center text-sm text-transparent hover:text-slate-400">
+        <BsHandIndex className="mr-2 mt-0.5 hover:text-slate-400" /> hold and drag to see
+        future forecasts{" "}
+      </div>
     </div>
   );
 }
