@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { Navigation, Pagination, A11y } from "swiper";
+import React from "react";
+import { Pagination, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -15,13 +15,21 @@ export default function Forecast({ forecastByCity, forecastData }) {
     <div>
       <Swiper
         breakpoints={{
+          320: {
+            slidesPerView: 2,
+            spaceBetween: 50,
+          },
+          480: {
+            slidesPerView: 3,
+            spaceBetween: 100,
+          },
           640: {
             slidesPerView: 3,
             spaceBetween: 40,
           },
           768: {
-            slidesPerView: 4,
-            spaceBetween: 100,
+            slidesPerView: 3,
+            spaceBetween: 50,
           },
           1024: {
             slidesPerView: 4,
@@ -46,8 +54,8 @@ export default function Forecast({ forecastByCity, forecastData }) {
               ? forecastByCity.list.map((item, key) => {
                   return (
                     <SwiperSlide key={key}>
-                      <li className="list-none">
-                        <div className="h-56 w-44 flex flex-col mt-8 items-center pt-2 rounded-xl bg-slate-900/10 ">
+                      <li className="list-none ">
+                        <div className=" h-56 w-44 flex flex-col mt-8 items-center pt-2 rounded-xl bg-slate-900/10 ">
                           <div className="w-40 mt-6 flex flex-col items-center ">
                             <p className="text-cyan-500 text-md ">
                               {moment(item.dt_txt).format("D")}
@@ -168,8 +176,8 @@ export default function Forecast({ forecastByCity, forecastData }) {
         </div>
       </Swiper>
       <div className="mt-6 flex justify-center text-sm text-transparent hover:text-slate-400">
-        <BsHandIndex className="mr-2 mt-0.5 hover:text-slate-400" /> hold and drag to see
-        future forecasts{" "}
+        <BsHandIndex className="mr-2 mt-0.5 hover:text-slate-400" /> hold and
+        move to see forecasts{" "}
       </div>
     </div>
   );
