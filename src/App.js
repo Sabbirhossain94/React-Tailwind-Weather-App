@@ -17,9 +17,8 @@ export default function App() {
   const [city, setCity] = useState("");
   const [weatherByCity, setWeatherByCity] = useState();
   const [forecastByCity, setForecastByCity] = useState();
-  const [error, setError] = useState(null);
   const [delay, setDelay] = useState(0);
-  const apiKey = "1c3579424b8f0d37df401ff1c117fafe";
+  const apiKey = process.env.REACT_APP_API_KEY;
   function getWeatherDetails() {
     if (!navigator.geolocation) {
       console.log("does not work!");
@@ -57,51 +56,58 @@ export default function App() {
     const queryCity = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
     const queryForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&type=hour&units=metric&appid=${apiKey}`;
 
-    fetch(queryCity)
-      .then((res) => res.json())
-      .then((data) => {
-        setWeatherByCity(data);
-      })
-      .catch((err) => console.log(err.message));
-    fetch(queryForecast)
-      .then((res) => res.json())
-      .then((data) => {
-        setForecastByCity(data);
-      })
-      .catch((err) => setError(err.message));
+    try {
+      fetch(queryCity)
+        .then((res) => res.json())
+        .then((data) => {
+          setWeatherByCity(data);
+        })
+        .catch((err) => console.log(err));
+
+      fetch(queryForecast)
+        .then((res) => res.json())
+        .then((data) => {
+          setForecastByCity(data);
+        })
+        .catch((err) => console.log(err));
+    } catch (err) {
+      console.log(err);
+    }
   }
   setTimeout(() => setDelay(1), 2000);
+
   return delay === 0 ? (
     <LoadingScreen />
   ) : (
     <div className="overflow-hidden">
-      <div className="font-inter font-medium bg-gradient-to-b from-slate-600 to-slate-800 h-full w-full">
-        <div className="mx-auto border border-transparent sm:h-full xs:w-11/12 sm:w-10/12 md:w-3/4 lg:w-3/4 xl:w-2/3 2xl:w-1/2  ">
-          {/* search area */}
-          <div className="mt-24 ">
-            <label className="relative block ">
-              <form onSubmit={handleSubmit}>
-                <span className="absolute inset-y-0 left-0 flex items-center ml-4 ">
-                  <AiOutlineSearch className="text-slate-400 " />
-                </span>
-                <input
-                  className=" caret-slate-400 placeholder:not-italic placeholder:text-slate-400 placeholder:text-md block text-slate-400 bg-slate-900/10 w-full h-12 border border-slate-900/10 rounded-md py-2 pl-9  shadow-md focus:outline-none focus:border-cyan-500 sm:text-sm"
-                  placeholder="Search by cities..."
-                  type="text"
-                  name="search"
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                  required
-                />
-              </form>
-            </label>
-          </div>
-          {/* search area /end */}
+      <div className="font-inter font-medium bg-gradient-to-b from-slate-800 to-slate-900 h-full w-full">
+        {weatherApiData ? (
+          <div className="mx-auto border border-transparent sm:h-full xs:w-11/12 sm:w-10/12 md:w-3/4 lg:w-3/4 xl:w-2/3 2xl:w-1/2  ">
+            {/* search area */}
+            <div className="mt-24 ">
+              <label className="relative block ">
+                <form onSubmit={handleSubmit}>
+                  <span className="absolute inset-y-0 left-0 flex items-center ml-4 ">
+                    <AiOutlineSearch className="text-slate-400 " />
+                  </span>
+                  <input
+                    className=" caret-slate-400 placeholder:not-italic placeholder:text-slate-400 placeholder:text-md block text-slate-400 bg-zinc-900/20 w-full h-12 border border-slate-900/10 rounded-md py-2 pl-9  shadow-md focus:outline-none focus:border-cyan-500 sm:text-sm"
+                    placeholder="Search by cities..."
+                    type="text"
+                    name="search"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    required
+                  />
+                </form>
+              </label>
+            </div>
+            {/* search area /end */}
 
-          {/* main */}
-          {weatherApiData ? (
+            {/* main */}
+
             <div>
-              <div className="bg-slate-900/10 rounded-lg mt-8 grid sm:grid-cols-2 sm:grid-rows-1 xs:grid-cols-1 xs:grid-rows-2 ">
+              <div className="  bg-zinc-900/20 rounded-lg mt-8 grid xs:grid-cols-1 xs:grid-rows-2 sm:grid-cols-2 sm:grid-rows-1  ">
                 {/* first column /start*/}
                 <div className="  flex flex-col items-center ">
                   <div className=" h-36 w-52 mt-4 ">
@@ -145,18 +151,20 @@ export default function App() {
                     </div>
                   </div>
                   <div className=" h-36 w-52">
-                    <div className=" flex flex-col items-center">
-                      <p className=" text-white text-3xl ">
-                        {weatherByCity
-                          ? weatherByCity.weather[0].description
-                              .charAt(0)
-                              .toUpperCase() +
-                            weatherByCity.weather[0].description.slice(1)
-                          : weatherApiData.weather[0].description
-                              .charAt(0)
-                              .toUpperCase() +
-                            weatherApiData.weather[0].description.slice(1)}
-                      </p>
+                    <div className=" flex flex-col justify-center items-center">
+                      <div>
+                        <p className=" text-white text-3xl text-center">
+                          {weatherByCity
+                            ? weatherByCity.weather[0].description
+                                .charAt(0)
+                                .toUpperCase() +
+                              weatherByCity.weather[0].description.slice(1)
+                            : weatherApiData.weather[0].description
+                                .charAt(0)
+                                .toUpperCase() +
+                              weatherApiData.weather[0].description.slice(1)}
+                        </p>
+                      </div>
                       <div className="flex mt-2 justify-center ">
                         <span>
                           <MdLocationOn className="mt-0.5 mr-0.5 text-cyan-500 text-xl" />
@@ -173,9 +181,9 @@ export default function App() {
                   </div>
                 </div>
                 {/* first column /end */}
-
+                
                 {/* second column /start */}
-                <div className=" mx-auto grid xs:grid-rows-2 xs:grid-cols-3 sm:grid-cols-2 sm:grid-rows-3 ">
+                <div className=" mx-auto xs:grid xs:grid-rows-2 xs:grid-cols-3 sm:grid sm:grid-cols-2 sm:grid-rows-3 ">
                   <div className=" flex flex-col justify-end items-center h-32 w-36 xs:mr-2 sm:mr-8">
                     <div className="flex flex-row justify-center">
                       <p className="text-slate-400 ">Max</p>
@@ -275,10 +283,14 @@ export default function App() {
               </footer>
               {/* forecast /end*/}
             </div>
-          ) : (
-            <h1>No Results found!</h1>
-          )}
-        </div>
+          </div>
+        ) : (
+          <div className="h-screen bg-slate-800 flex justify-center items-center ">
+            <h1 className="text-white text-xl text-center">
+              Please allow location access to see weather details!
+            </h1>
+          </div>
+        )}
       </div>
     </div>
   );

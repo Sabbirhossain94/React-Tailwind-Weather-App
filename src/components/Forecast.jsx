@@ -55,7 +55,7 @@ export default function Forecast({ forecastByCity, forecastData }) {
                   return (
                     <SwiperSlide key={key}>
                       <li className="list-none ">
-                        <div className=" h-56 w-44 flex flex-col mt-8 items-center pt-2 rounded-xl bg-slate-900/10 ">
+                        <div className=" h-56 w-44 flex flex-col mt-8 items-center pt-2 rounded-xl bg-zinc-900/20">
                           <div className="w-40 mt-6 flex flex-col items-center ">
                             <p className="text-cyan-500 text-md ">
                               {moment(item.dt_txt).format("D")}
@@ -116,7 +116,7 @@ export default function Forecast({ forecastByCity, forecastData }) {
                     <SwiperSlide key={key}>
                       <li className="list-none">
                         {" "}
-                        <div className="h-56 w-44 mt-8 flex flex-col items-center pt-2 rounded-xl bg-slate-900/10 ">
+                        <div className="h-56 w-44 mt-8 flex flex-col items-center pt-2 rounded-xl bg-zinc-900/20 ">
                           <div className="w-40 mt-6 flex flex-col items-center ">
                             <p className="text-cyan-500 text-md">
                               {moment(item.dt_txt).format("D")}
