@@ -10,6 +10,7 @@ import moment from "moment/moment";
 import { FaLongArrowAltUp } from "react-icons/fa";
 import { FaLongArrowAltDown } from "react-icons/fa";
 import { BsHandIndex } from "react-icons/bs";
+
 export default function Forecast({ forecastByCity, forecastData }) {
   return (
     <div>
