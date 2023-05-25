@@ -56,19 +56,19 @@ export default function Forecast({ forecastByCity, forecastData }) {
                   return (
                     <SwiperSlide key={key}>
                       <li className="list-none ">
-                        <div className=" h-56 w-44 flex flex-col mt-8 items-center pt-2 rounded-xl bg-zinc-900/20">
+                        <div className="cursor-pointer h-56 w-44 flex flex-col mt-8 items-center pt-2 rounded-xl bg-zinc-900/20">
                           <div className="w-40 mt-6 flex flex-col items-center ">
                             <p className="text-cyan-500 text-md ">
                               {moment(item.dt_txt).format("D")}
                               <span className="text-slate-400">
-                                {" "}
+                                &nbsp;
                                 {moment(item.dt_txt).format("MMM")}
                               </span>
                               <span>
-                                {" "}
+                                &nbsp;
                                 {moment(item.dt_txt).format("h")}
                                 <span className="text-slate-400">
-                                  {" "}
+                                  &nbsp;
                                   {moment(item.dt_txt).format("A")}
                                 </span>
                               </span>
@@ -122,14 +122,14 @@ export default function Forecast({ forecastByCity, forecastData }) {
                             <p className="text-cyan-500 text-md">
                               {moment(item.dt_txt).format("D")}
                               <span className="text-slate-400">
-                                {" "}
+                                &nbsp;
                                 {moment(item.dt_txt).format("MMM")}
                               </span>
                               <span>
-                                {" "}
+                                &nbsp;
                                 {moment(item.dt_txt).format("h")}
                                 <span className="text-slate-400">
-                                  {" "}
+                                  &nbsp;
                                   {moment(item.dt_txt).format("A")}
                                 </span>
                               </span>
