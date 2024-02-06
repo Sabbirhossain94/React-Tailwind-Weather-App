@@ -12,6 +12,7 @@ import "./index.css";
 import Forecast from "./components/Forecast";
 import LoadingScreen from "./components/LoadingScreen";
 import axios from "axios";
+import Footer from "./components/Footer";
 
 export default function App() {
   const [weatherApiData, setWeatherApiData] = useState();
@@ -144,11 +145,10 @@ export default function App() {
                       <div className="flex justify-center ">
                         <img
                           style={{ color: "white", marginLeft: "10px" }}
-                          src={`http://openweathermap.org/img/wn/${
-                            weatherByCity
+                          src={`http://openweathermap.org/img/wn/${weatherByCity
                               ? weatherByCity?.weather[0].icon
                               : weatherApiData?.weather[0].icon
-                          }@2x.png`}
+                            }@2x.png`}
                           alt="error"
                         />
                       </div>
@@ -184,13 +184,13 @@ export default function App() {
                         <p className=" text-white text-3xl text-center">
                           {weatherByCity
                             ? weatherByCity?.weather[0].description
-                                .charAt(0)
-                                .toUpperCase() +
-                              weatherByCity?.weather[0].description.slice(1)
+                              .charAt(0)
+                              .toUpperCase() +
+                            weatherByCity?.weather[0].description.slice(1)
                             : weatherApiData?.weather[0].description
-                                .charAt(0)
-                                .toUpperCase() +
-                              weatherApiData?.weather[0].description.slice(1)}
+                              .charAt(0)
+                              .toUpperCase() +
+                            weatherApiData?.weather[0].description.slice(1)}
                         </p>
                       </div>
                       <div className="flex mt-2 justify-center ">
@@ -200,8 +200,8 @@ export default function App() {
                         <p className="flex text-slate-400 text-md">
                           {weatherByCity
                             ? weatherByCity.name +
-                              ", " +
-                              weatherByCity?.sys.country
+                            ", " +
+                            weatherByCity?.sys.country
                             : weatherApiData?.sys.country}
                         </p>
                       </div>
@@ -290,18 +290,11 @@ export default function App() {
                   </div>
                 </div>
               </div>
-
               <Forecast
                 forecastByCity={forecastByCity}
                 forecastData={forecastData}
               />
-
-              <footer className="mt-8 h-24 border-t border-cyan-400/20 w-full flex justify-center items-center">
-                <span className="text-cyan-500">© </span>{" "}
-                <span className="text-white text-sm">
-                  &nbsp;2023 Weather-App. All Rights Reserved.
-                </span>
-              </footer>
+              <Footer />
             </div>
           )}
         </div>
