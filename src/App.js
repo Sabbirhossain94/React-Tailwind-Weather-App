@@ -146,8 +146,8 @@ export default function App() {
                         <img
                           style={{ color: "white", marginLeft: "10px" }}
                           src={`http://openweathermap.org/img/wn/${weatherByCity
-                              ? weatherByCity?.weather[0].icon
-                              : weatherApiData?.weather[0].icon
+                            ? weatherByCity?.weather[0].icon
+                            : weatherApiData?.weather[0].icon
                             }@2x.png`}
                           alt="error"
                         />
